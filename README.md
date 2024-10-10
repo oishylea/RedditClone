@@ -1,6 +1,6 @@
 # Reddit Clone App
 
-A full-stack Reddit clone built with Laravel, Inertia.js, and Vue.js. This project is designed to help you understand the process of building a social media application from scratch.
+This project is a comprehensive full-stack Reddit clone developed using Laravel, Inertia.js, and Vue.js. It serves as a practical guide for building a modern social media application, showcasing essential features such as user authentication, post management, and interactive commenting.
 
 ## Features
 

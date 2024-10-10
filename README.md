@@ -41,3 +41,6 @@ This project is a comprehensive full-stack Reddit clone developed using Laravel,
 7. Run
    ```bash
    npm run dev
+
+## Run The Code Using XAMPP
+run Apache -> Admin -> Localhost -> Folder -> Public

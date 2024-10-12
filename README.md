@@ -42,12 +42,16 @@ This project is a comprehensive full-stack Reddit clone developed using Laravel,
 7. Run
    ```bash
    npm run dev
+   
+## Run The Code Using XAMPP
+   
+   run Apache -> Admin -> Localhost -> Folder -> Public<br><br><br>
+   
+-----------------------------------------------------
+# Notes
 
 ## Step To Create Model
 
-1. **Open command prompt and start with cd FileLocation**
+1. **Open the command prompt and start with cd FileLocation**
    ```bash
    php artisan make:model ModelName -m
-   
-## Run The Code Using XAMPP
-run Apache -> Admin -> Localhost -> Folder -> Public

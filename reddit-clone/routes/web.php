@@ -45,13 +45,12 @@ Route::middleware('auth')->group(function () {
     Route::patch('/courses/{course}', [CourseController::class, 'update'])->name('courses.update');
     Route::delete('/courses/{course}', [CourseController::class, 'destroy'])->name('courses.destroy');
 });
-
-Route::group(['middleware'=>['auth','verified']], function (){
+Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
 
-    Route::resource('/communities',CommunityController::class);
+    Route::resource('/communities', CommunityController::class);
 });
 
 // Load authentication routes

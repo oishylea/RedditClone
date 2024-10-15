@@ -18,7 +18,10 @@ class CommunityController extends Controller
      */
     public function index()
     {
-        return "ok";
+        $communities = Community::all();
+        // $communities = Community::paginate(10);
+        // dd($communities);
+        return Inertia::render( 'Communities/Index', compact('communities'));
     }
 
     /**

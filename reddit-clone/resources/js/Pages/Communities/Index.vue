@@ -64,8 +64,8 @@
                           {{ community.slug }}
                         </td>
                         <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                          <Link :href="route('communities.edit', community.slug)" class="text-indigo-600 hover:text-indigo-900">Edit</Link>
-                          <Link :href="route('communities.destroy', community.slug)" method="delete" class="text-red-600 hover:text-red-900">Delete</Link>
+                          <Link :href="route('communities.edit', community.id)" class="text-indigo-600 hover:text-indigo-900">Edit</Link>
+                          <!-- <Link :href="route('communities.destroy', community.slug)" method="delete" class="text-red-600 hover:text-red-900">Delete</Link> -->
                         </td>
                       </tr>
                     </tbody>

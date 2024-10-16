@@ -4,6 +4,8 @@
 
 This project is a comprehensive full-stack Reddit clone developed using Laravel, Inertia.js, and Vue.js. It serves as a practical guide for building modern academic information sharing, showcasing essential features such as user authentication, post management, and interactive commenting for University students in Malaysia.
 
+[Access Documents](https://github.com/oishylea/RedditClone/tree/main/document)
+
 ## Features
 
 - User authentication

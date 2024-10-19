@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CourseController; // Import your CourseController here
 use App\Http\Controllers\Backend\CommunityController;
+use App\Http\Controllers\Frontend\SubredditController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -28,6 +29,8 @@ Route::get('/', function () {
     ]);
 });
 
+Route::get( '/r/{slug}',[SubredditController::class,'show'])->name('subreddit.show');
+
 // Profile Management Routes
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -50,7 +53,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
 
-    Route::resource('/communities', CommunityController::class);
+    Route::resource('/dashboard/communities', CommunityController::class);
 });
 
 // Load authentication routes

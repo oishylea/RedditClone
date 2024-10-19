@@ -30,7 +30,7 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get( '/r/{slug}',[FrontendCommunityController::class,'show'])->name('subreddit.show');
+Route::get( '/r/{slug}',[FrontendCommunityController::class,'show'])->name('frontend.communities.show');
 
 // Profile Management Routes
 Route::middleware('auth')->group(function () {
@@ -57,6 +57,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::resource('/dashboard/communities', CommunityController::class);
     Route::resource('/dashboard/communities.posts', CommunityPostController::class);
 
+    Route::post('/communities/{community}/posts', [CommunityPostController::class, 'store'])
+    ->name('communities.posts.store');
 });
 
 // Load authentication routes

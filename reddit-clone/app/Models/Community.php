@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Cviebrock\EloquentSluggable\Sluggable; // Make sure to import the Sluggable trait
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class Community extends Model
 {
@@ -14,15 +14,25 @@ class Community extends Model
         'user_id',
         'name',
         'description',
-        'slug'
+        'slug',
     ];
 
-    public function sluggable(): array // Corrected function spelling
+    public function sluggable(): array
     {
         return [
             'slug' => [
-                'source' => 'name'
-            ]
+                'source' => 'name',
+            ],
         ];
+    }
+
+    public function getRouteKeyName() // Fixed spelling
+    {
+        return 'slug';
+    }
+
+    public function posts() // Fixed spelling
+    {
+        return $this->hasMany(Post::class);
     }
 }

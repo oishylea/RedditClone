@@ -7,9 +7,7 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Http\Requests\CommunityStoreRequest;
 use App\Models\Community;
-
-
-
+use Illuminate\Support\Str;
 
 class CommunityController extends Controller
 {
@@ -18,7 +16,11 @@ class CommunityController extends Controller
      */
     public function index()
     {
-        $communities = Community::all();
+        $communities = Community::paginate(5)->through(fn($community) => [
+            'id' => $community->id,
+            'name' => $community->name,
+            'slug' => $community->slug,
+        ]);
         // $communities = Community::paginate(10);
         // dd($communities);
         return Inertia::render( 'Communities/Index', compact('communities'));
@@ -29,7 +31,7 @@ class CommunityController extends Controller
      */
     public function create()
     {
-        return Inertia::render(component: 'Communities/Create');
+        return Inertia::render('Communities/Create');
     }
 
     /**
@@ -37,19 +39,24 @@ class CommunityController extends Controller
      */
     public function store(CommunityStoreRequest $request)
     {
-        Community::create($request->validated()+['user_id'=>auth()->id()]);
+        Community::create(
+            $request->validated() + [
+                'slug' => Str::slug($request->name), //generate slug from name
+                'user_id'=>auth()->id()
+            ]
+        );
     
-        return to_route('communities.index');
+        return to_route('communities.index')->with('message','Community created successfully.');
     }
     
 
     /**
      * Display the specified resource.
      */
-    public function show(Community $community)
+    /*public function show(Community $community)
     {
-//
-    }
+        return Inertia::render('Communites/Edit', compact('community'));
+    }*/
 
     /**
      * Show the form for editing the specified resource.
@@ -64,15 +71,22 @@ class CommunityController extends Controller
      */
     public function update(CommunityStoreRequest $request, Community $community)
     {
-        $community->update($request->validated());
-        return to_route('communities.index');
+        $community->update(
+            $request->validated() + [
+                'slug' => Str::slug($request->name) // Update slug when name changes
+            ]
+        );
+
+        return to_route('communities.index')->with('message','Community updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Community $community)
     {
-        //
+        $community->delete();
+        return redirect()->route('communities.index')->with('message', 'Community deleted successfully.');
     }
+
 }

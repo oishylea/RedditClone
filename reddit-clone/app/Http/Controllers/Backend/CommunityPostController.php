@@ -12,6 +12,7 @@ use Inertia\Inertia;
 
 class CommunityPostController extends Controller
 {
+
     public function create(Community $community)
     {
         return Inertia::render('Communities/Posts/Create', compact('community'));
@@ -20,7 +21,7 @@ class CommunityPostController extends Controller
     public function store(StorePostRequest $request, Community $community)
     {
         // Generate a slug from the title
-        $slug = Str::slug($request->title);
+        //$slug = Str::slug($request->title);
     
         // Create the post
         $community->posts()->create([
@@ -28,7 +29,7 @@ class CommunityPostController extends Controller
             'title' => $request->title,
             'url' => $request->url,
             'description' => $request->description,
-            'slug' => $slug, // Include the generated slug
+            //'slug' => $slug, // Include the generated slug
         ]);
     
         return Redirect::route('frontend.communities.show', $community->slug);

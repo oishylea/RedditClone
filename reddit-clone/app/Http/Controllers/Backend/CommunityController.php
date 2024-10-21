@@ -89,4 +89,8 @@ class CommunityController extends Controller
         return redirect()->route('communities.index')->with('message', 'Community deleted successfully.');
     }
 
+    // app/Http/Controllers/Backend/CommunityController.php
+
+
 }
+

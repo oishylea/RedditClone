@@ -34,4 +34,9 @@ class CommunityPostController extends Controller
     
         return Redirect::route('frontend.communities.show', $community->slug);
     }
+
+    public function edit(Community $community, Post $post)
+    {
+        return Inertia::render('Communities/Posts/Edit', compact('community', 'post'));
+    }
 }

@@ -2,7 +2,7 @@
     <guest-layout>
         <template #header>
             <div class="flex justify-between m-2 p-2">
-            <h2
+                <h2
                 class="text-xl font-semibold leading-tight text-gray-800 leading-tight">
                 r/{{ community.name }}
             </h2>
@@ -20,10 +20,12 @@
                 :community="community.slug" 
                 :key="post.id" 
                 />
+                
                 <div class="mt-4 p-2">
                     <Pagination :links="posts.meta.links"/>
                 </div>
             </div>
+            
             <div class="w-4/12 p-4">
                 <div class="m-2 p-2 bg-slate-500 text-white">
                     <h2>Latest Communities</h2>

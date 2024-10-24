@@ -28,6 +28,11 @@ class Post extends Model
         ];
     }
 
+    public function getRouteKeyName() // Fixed spelling
+    {
+        return 'slug';
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);

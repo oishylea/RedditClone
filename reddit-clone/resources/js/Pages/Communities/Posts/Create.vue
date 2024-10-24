@@ -8,14 +8,15 @@ import TextInput from '@/Components/TextInput.vue';
 import { useForm } from '@inertiajs/vue3';
 
 const props = defineProps({
+    post: Object,
     community: Object,
     errors: Object
 });
 
 const form = useForm({
-    title: '',
-    description: '',
-    url: '',
+    title: props.post?.title,
+    description: props.post?.description,
+    url: props.post?.url,
 });
 
 const submit = () => {

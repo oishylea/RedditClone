@@ -9,8 +9,15 @@ use App\Http\Requests\CommunityStoreRequest;
 use App\Models\Community;
 use Illuminate\Support\Str;
 
+
 class CommunityController extends Controller
-{
+{   
+
+    public function show($slug){
+        $posts = CommunityPostResource::collection(Community->post()->with('user')->paginate(12));
+        return Inertia::render('Fronted/Communities/Show', compact('community','posts'));
+    }
+    
     /**
      * Display a listing of the resource.
      */

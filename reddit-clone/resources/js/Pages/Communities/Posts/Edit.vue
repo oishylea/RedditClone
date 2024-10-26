@@ -8,19 +8,20 @@ import TextInput from '@/Components/TextInput.vue';
 import { useForm } from '@inertiajs/vue3';
 
 const props = defineProps({
+    post: Object,
     community: Object,
     errors: Object
 });
 
 const form = useForm({
-    title: '',
-    description: '',
-    url: '',
+    title: props.post?.title,
+    description: props.post?.description,
+    url: props.post?.url,
 });
 
 const submit = () => {
     console.log('Form data before submission:', form); // Debugging log
-    form.post(route('communities.posts.store', props.community.slug), {
+    form.put(route('communities.posts.update', [props.community.slug, props.post.slug]), {
         onSuccess: () => {
             console.log('Form submitted successfully!'); // Success log
         },
@@ -88,7 +89,7 @@ const submit = () => {
                                 :class="{ 'opacity-25': form.processing }"
                                 :disabled="form.processing"
                             >
-                                Store
+                                Update
                             </PrimaryButton>
                         </div>
                     </form>

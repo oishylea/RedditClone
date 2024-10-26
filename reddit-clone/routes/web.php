@@ -33,6 +33,7 @@ Route::get('/', function () {
 
 Route::get( '/r/{slug}',[FrontendCommunityController::class,'show'])->name('frontend.communities.show');
 Route::get( '/r/{community_slug}/posts/{post:slug}',[PostController::class,'show'])->name('frontend.communities.posts.show');
+Route::get('/r/{community}/posts/{post}/edit', [CommunityPostController::class, 'edit'])->name('communities.posts.edit');
 
 // Profile Management Routes
 Route::middleware('auth')->group(function () {
@@ -62,6 +63,9 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::post('/communities/{community}/posts', [CommunityPostController::class, 'store'])
     ->name('communities.posts.store');
 });
+Route::get('/r/{community}', [CommunityController::class, 'show'])->name('frontend.communities.show');
+
+
 
 // Load authentication routes
 require __DIR__.'/auth.php';

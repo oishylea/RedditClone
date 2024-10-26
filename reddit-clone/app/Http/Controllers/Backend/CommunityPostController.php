@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
+use App\Models\Post;
 
 class CommunityPostController extends Controller
 {
@@ -38,5 +39,20 @@ class CommunityPostController extends Controller
     public function edit(Community $community, Post $post)
     {
         return Inertia::render('Communities/Posts/Edit', compact('community', 'post'));
+    }
+
+    public function update(StorePostRequest $request, Community $community, Post $post)
+    {
+        $post->update($request->validated());
+    
+        return Redirect::route('frontend.communities.posts.show', [$community->slug, $post->slug]);
+    }
+
+    public function destroy(Community $community, Post $post)
+    {
+        $post->delete();
+    
+        return Redirect::route('frontend.communities.show', $community->slug)->with('status', 'Post deleted!');
+
     }
 }

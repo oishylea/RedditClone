@@ -14,9 +14,9 @@
                     <div class="flex flex-col md:flex-row justify-between mt-2">
                         <div> Posted by
                             <span class="ml-2 text-slate-700"> {{post.data.username}}</span></div>
-                        <div>
+                        <div v-if="$page.props.auth.auth_check && post.data.owner">
                             <Link :href="route('communities.posts.edit',[community.slug, post.data.slug])" class="font-semibold bg-blue-500 hover:bg-blue-700 rounded-md text-white px-4 py-2 mr-2">Edit</Link>
-                            <Link :href="route('communities.posts.edit',[community.slug, post.data.slug])" class="font-semibold bg-red-500 hover:bg-red-700 rounded-md text-white px-4 py-2">Delete</Link>
+                            <Link :href="route('communities.posts.destroy',[community.slug, post.data.slug])" class="font-semibold bg-red-500 hover:bg-red-700 rounded-md text-white px-4 py-2" method="delete" as="button" type="button">Delete</Link>
                         </div>
                     </div>
                    <div class="p-2">

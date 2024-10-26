@@ -53,12 +53,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/courses/{course}', [CourseController::class, 'destroy'])->name('courses.destroy');
 });
 Route::group(['middleware' => ['auth', 'verified']], function () {
-       Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('dashboard');
+    
+    // Route::get('/dashboard', function () {
+    //     return Inertia::render('Dashboard');
+    // })->name('dashboard');
 
-    Route::resource('/dashboard/communities', CommunityController::class);
-    Route::resource('/dashboard/communities.posts', CommunityPostController::class);
+    Route::resource('/communities', CommunityController::class);
+    Route::resource('/communities.posts', CommunityPostController::class);
 
     Route::post('/communities/{community}/posts', [CommunityPostController::class, 'store'])
     ->name('communities.posts.store');

@@ -53,7 +53,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/courses/{course}', [CourseController::class, 'destroy'])->name('courses.destroy');
 });
 Route::group(['middleware' => ['auth', 'verified']], function () {
-    Route::get('/dashboard', function () {
+       Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
 

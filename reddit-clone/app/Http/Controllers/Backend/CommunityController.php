@@ -14,6 +14,7 @@ class CommunityController extends Controller
 {   
 
     public function show($slug){
+        $community = Community:: where('slug',$slug)->firstOrFail();
         $posts = CommunityPostResource::collection(Community->post()->with('user')->paginate(12));
         return Inertia::render('Fronted/Communities/Show', compact('community','posts'));
     }

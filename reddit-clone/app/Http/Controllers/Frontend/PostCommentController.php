@@ -16,14 +16,17 @@ class PostCommentController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return back()->withErrors($validator)->withInput();
+            return response()->json(['errors' => $validator->errors()], 422); // Return errors as JSON
         }
 
-        $post->comments()->create([
+        $comment = $post->comments()->create([
             'user_id' => auth()->id(),
             'content' => request()->input('content'),
         ]);
+        
+        // Ensure the comment has a `username` field, either directly or via relationship
+        $username = auth()->user()->username; // Assuming you have a username field in your User model
+        
 
-        return back()->with('success', 'Comment added successfully!'); // Optional success message
     }
 }

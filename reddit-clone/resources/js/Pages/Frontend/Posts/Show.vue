@@ -39,27 +39,45 @@
                 class="font-semibold text-blue-500 text-sm hover:text-blue-300"
                 >{{ post.data.url }}</a
               >
-              <div v-if="$page.props.auth.auth_check">
-                <form class="bg-white shadow-md rounded-lg p-6 my-4" @submit.prevent="submit">
-                  <div class="mb-4">
-                    <label for="comment" class="block text-gray-700 font-bold mb-2">Your comment</label>
-                    <textarea
-                      v-model="form.content"
-                      id="comment"
-                      rows="3"
-                      class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-black"
-                    ></textarea>
-                  </div>
-                  <div class="flex justify-end">
-                    <button
-                      type="submit"
-                      class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
-                    >
-                      Comment
-                    </button>
-                  </div>
-                </form>
-              </div>
+            </div> 
+            <hr />
+            <ul>
+              <li
+                v-for="(comment, index) in post.data.comments"
+                :key="comment.id" 
+                class="py-4 flex flex-col"
+              >
+                <div class="text-sm">
+                  Commented by
+                  <span class="font-semibold ml-1 text-slate-700">{{ comment.username }}</span>
+                </div>
+                <div class="text-slate-600 m-2 p-2">
+                  {{ comment.content }}
+                </div>
+              </li>
+            </ul>
+            <hr />
+  
+            <div v-if="$page.props.auth.auth_check">
+              <form class="bg-white shadow-md rounded-lg p-6 my-4" @submit.prevent="submit">
+                <div class="mb-4">
+                  <label for="comment" class="block text-gray-700 font-bold mb-2">Your comment</label>
+                  <textarea
+                    v-model="form.content"
+                    id="comment"
+                    rows="3"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-black"
+                  ></textarea>
+                </div>
+                <div class="flex justify-end">
+                  <button
+                    type="submit"
+                    class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+                  >
+                    Comment
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
@@ -86,15 +104,26 @@
   });
   
   const submit = () => {
-    console.log('Form data before submission:', form); // Debugging log
-    form.post(route('frontend.posts.comments', [props.community.slug, props.post.data.slug]), {
-      onSuccess: () => {
-        console.log('Form submitted successfully!'); // Success log
-        form.reset(); // Clear the form after successful submission
-      },
-      onError: (errors) => {
-        console.error('Form submission errors:', errors); // Error log
-      },
-    });
-  };
+  console.log('Form data before submission:', form); // Debugging log
+  form.post(route('frontend.posts.comments', [props.community.slug, props.post.data.slug]), {
+    onSuccess: (response) => {
+      console.log('Form submitted successfully!', response); // Success log
+      
+      // Create a new comment object
+      const newComment = {
+        id: response.comment.id, // Ensure this exists in your response
+        content: form.content,
+        username: $page.props.auth.user.username, // Ensure this is correct
+        created_at: new Date().toISOString(), // Optional: format as needed
+      };
+      
+      // Update the local comments list
+      props.post.data.comments.push(newComment);
+      form.reset(); // Clear the form after successful submission
+    },
+    onError: (errors) => {
+      console.error('Form submission errors:', errors); // Error log
+    },
+  });
+};
   </script>

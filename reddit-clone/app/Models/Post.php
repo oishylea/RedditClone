@@ -10,7 +10,7 @@ class Post extends Model
 {
     use HasFactory, Sluggable;
 
-    protected $fillable =[
+    protected $fillable = [
         'user_id',
         'community_id',
         'title',
@@ -19,7 +19,7 @@ class Post extends Model
         'url'
     ];
 
-    public function sluggable(): array // Corrected function spelling
+    public function sluggable(): array
     {
         return [
             'slug' => [
@@ -28,7 +28,7 @@ class Post extends Model
         ];
     }
 
-    public function getRouteKeyName() // Fixed spelling
+    public function getRouteKeyName()
     {
         return 'slug';
     }
@@ -38,4 +38,13 @@ class Post extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function community()
+    {
+        return $this->belongsTo(Community::class);
+    }
 }

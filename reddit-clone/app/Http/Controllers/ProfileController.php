@@ -29,15 +29,20 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        $user = $request->user();
+        $user->fill($request->validated());
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        // Check if the email field is dirty and set email_verified_at to null
+        if ($user->isDirty('email')) {
+            $user->email_verified_at = null;
         }
 
-        $request->user()->save();
-
-        return Redirect::route('profile.edit');
+        // Attempt to save the user and handle success/failure
+        if ($user->save()) {
+            return Redirect::route('profile.edit')->with('status', 'Profile updated successfully.');
+        } else {
+            return Redirect::route('profile.edit')->withErrors(['update' => 'Profile update failed.']);
+        }
     }
 
     /**
@@ -50,9 +55,7 @@ class ProfileController extends Controller
         ]);
 
         $user = $request->user();
-
         Auth::logout();
-
         $user->delete();
 
         $request->session()->invalidate();

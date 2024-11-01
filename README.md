@@ -2,7 +2,7 @@
 
 # Reddit Clone App
 
-This project is a comprehensive full-stack Reddit clone developed using Laravel, Inertia.js, and Vue.js. It serves as a practical guide for building modern academic information sharing, showcasing essential features such as user authentication, post management, and interactive commenting for University students in Malaysia.
+Our primary objective is to develop a platform that works similar to Reddit and Twitter but is specially dedicated to families with special needs children and individuals with special needs to share their unique talents. This project also will allow our target users to share their thoughts and experiences openly to strengthen community bonds. This platform aims to provide moral support to our users, especially those who are newly aware of their child's needs. We plan to create this project by utilising Laravel, Vue.js, MySQL, and IBM Watson. As our project also targets individuals with special needs, we want to build a system that has a friendly interface view by displaying text with larger spacing and larger size than the existing system with colourful icons for users' convenience especially individuals with Dyslexia, Attention Deficit Hyperactivity Disorder (ADHD) and Cognitive Disabilities. Additionally, we want to provide Artificial intelligence assistance for user support. This specialised interface is designed to help users engage more effectively and act as a starting point for children with special needs to be exposed to other technologies.
 
 [Access Documents](https://github.com/oishylea/RedditClone/tree/main/document)
 

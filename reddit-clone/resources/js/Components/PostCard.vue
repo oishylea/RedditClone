@@ -1,8 +1,8 @@
 <template>
-  <div class="mt-4 p-6 max-w-4xl flex bg-white rounded-lg border border-gray-200 shadow-md dark:bg-white">
+  <div class="mt-4 max-w-4xl flex bg-white rounded-lg border border-gray-200 shadow-md dark:bg-white">
   
   <div class="mr-3">
-    <PostVote :post="post.slug"/>
+    <PostVote :post="post"/>
   </div>
 
   <div>

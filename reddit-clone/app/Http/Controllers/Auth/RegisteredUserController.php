@@ -48,6 +48,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(route('communities', absolute: false));
+        return redirect(route('communities.index', absolute: false));
     }
 }

@@ -59,19 +59,6 @@ class CommunityController extends Controller
     
         return to_route('communities.index')->with('message','Community created successfully.');
     }
-    
-
-    /**
-     * Display the specified resource.
-     */
-    /*public function show(Community $community)
-    {
-        return Inertia::render('Communites/Edit', compact('community'));
-    }*/
-
-    /**
-     * Show the form for editing the specified resource.
-     */
 
 
     public function edit(Community $community)

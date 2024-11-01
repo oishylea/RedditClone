@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CourseController; // Import your CourseController here
 use App\Http\Controllers\Backend\CommunityController;
 use App\Http\Controllers\Backend\CommunityPostController;
+use App\Http\Controllers\Backend\PostVoteController;
 use App\Http\Controllers\Frontend\FrontendCommunityController;
 use App\Http\Controllers\Frontend\PostController;
 use App\Http\Controllers\Frontend\PostCommentController;
@@ -64,6 +65,8 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
     Route::resource('/communities', CommunityController::class);
     Route::resource('/communities.posts', CommunityPostController::class);
+    Route::post('/posts/{post:slug}/upVote',[PostVoteController::class, 'upVote'])->name('posts.upVote');
+    Route::post('/posts/{post:slug}/downVote',[PostVoteController::class, 'downVote'])->name('posts.downVote');
 
     Route::post('/communities/{community}/posts', [CommunityPostController::class, 'store'])
     ->name('communities.posts.store');

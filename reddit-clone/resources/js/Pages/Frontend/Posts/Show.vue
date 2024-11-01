@@ -115,7 +115,6 @@
     onSuccess: (response) => {
       console.log('Form submitted successfully!', response); // Success log
       
-      // Create a new comment object
       const newComment = {
         id: response.comment.id, // Ensure this exists in your response
         content: form.content,
@@ -123,7 +122,6 @@
         created_at: new Date().toISOString(), // Optional: format as needed
       };
       
-      // Update the local comments list
       props.post.data.comments.push(newComment);
       form.reset(); // Clear the form after successful submission
     },

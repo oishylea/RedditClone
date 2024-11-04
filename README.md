@@ -11,8 +11,7 @@ Our primary objective is to develop a platform that works similar to Reddit and 
 - User authentication
 - Post-creation and management
 - Commenting system
-- Upvoting and downvoting posts
-- Responsive design
+- Upvoting posts
 
 ## Technologies Used
 

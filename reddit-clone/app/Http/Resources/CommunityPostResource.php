@@ -22,6 +22,8 @@ class CommunityPostResource extends JsonResource
             'slug' => $this -> slug,
             'votes' => $this->votes,
             'postVotes' => $this->whenLoaded('postVotes'),
+            'community_slug' => $this->community->slug,
+            'comments' => $this->comments_count,
         ];
     }
 }

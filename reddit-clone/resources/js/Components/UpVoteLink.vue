@@ -4,7 +4,7 @@
             as="button"
             type="button"
             class="text-grey-400 hover:text-red-500 flex justify-center my-2"
-            prserve-scroll>
+            preserve-scroll>
 
             <!-- up -->
             <!-- <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">

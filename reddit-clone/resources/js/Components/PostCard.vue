@@ -24,7 +24,7 @@
   </p>
 
   <div class="flex m-2 p-2">
-    <p class="mr-4 p-2">Comments(2)</p>
+    <p class="mr-4 p-2">Comments({{ post.comments_count }})</p> 
     <Link :href="route('frontend.communities.posts.show', [community, post.slug])" class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700">
       Read more
       <svg aria-hidden="true" class="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">s

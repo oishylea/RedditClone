@@ -11,10 +11,11 @@
           </div>
           <div class="flex m-2 p-2 bg-white text-sm text-slate-400">
             <div>
-              <PostVoteLink :post='post.data' />
+              <PostVoteLink :post="post.data" />
             </div>
-            <div class="w-full">
-              <div class="flex flex-col md:flex-row justify-between mt-2">
+              <div>V0tes</div>
+              <div class="w-full">
+                <div class="flex flex-col md:flex-row justify-between m-2">
               <div>
                 Posted by
                 <span class="ml-2 text-slate-700">{{ post.data.username }}</span>
@@ -83,9 +84,9 @@
                 </div>
               </form>
             </div>
+              </div>
             </div>
           </div>
-        </div>
         <div class="w-full md:w-4/12 p-4">
           <div class="m-2 p-2 bg-slate-500 text-white">
             <h2>Latest Communities</h2>

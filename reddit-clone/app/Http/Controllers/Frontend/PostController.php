@@ -20,6 +20,9 @@ class PostController extends Controller
         }])->where('slug', $slug)->first());
 
         $posts = PostResource::collection($community->posts()->orderBy('votes', 'desc')->take(6)->get());
-        return Inertia::render('Frontend/Posts/Show', compact('community','post', 'posts'));
+        
+        $can_update = false;
+        $can_delete = false;
+        return Inertia::render('Frontend/Posts/Show', compact('community','post', 'posts', 'can_update', 'can_delete'));
     }
 }
